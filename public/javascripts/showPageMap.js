@@ -13,8 +13,7 @@ new mapboxgl.Marker()
   .setPopup(
     new mapboxgl.Popup({offset:25})
     .setHTML(
-      `<h3>${spot.title}</h3><p>${spot.location}</p>`
-
+      `<h4>${spot.title}</h4><p>${spot.location}</p>`
     )
   )
   .addTo(map);

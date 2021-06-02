@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EatCode</title>
     <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/stars.css">
 </head>
 
 <body>
@@ -26,24 +27,20 @@
 			<div class="col-lg-6">
 				<div class="card mb-3">
 					<div class="row-md-4">
+            <a href="/spots/<%=spot._id%>">
 						<%if(spot.images.length) {%>
 						<img class="img-fluid" alt="" src="<%=spot.images[0].url%>">
 						<% }else {%>
 						<img class="img-fluid" alt=""
 								src="https://res.cloudinary.com/dnaameeyf/image/upload/v1618853362/EatCode/photo-1504113888839-1c8eb50233d3_c24mzw.jpg">
 						<% } %>
+            </a>
 					</div>
 					<div class="row-md-8">
 						<div class="card-body">
 								<h4 class="card-title"><%= spot.title %> </h4>
-								<p class="card-text">
-										<small class="text-muted"><em><%= spot.location%></em></small>
-								</p>
+                <p class="card-text"><small class="text-muted"><em>Posted by </em><strong><%= spot.author.username %></strong></small></p>
 								<p class="card-text"><%= spot.description %></p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <a class="btn btn-primary" href="/spots/<%=spot._id%>">View <%=spot.title%></a>
-
-                </div>
 						</div>
 					</div>
 				</div>

@@ -46,8 +46,18 @@ const SpotSchema = new Schema({
 
 SpotSchema.virtual('properties.popUpMarkup').get(function() {
   return `
-  <strong><a href="/spots/${this._id}">${this.title}</a><strong>
-  <p>${this.description.substring(0,60)}...</p>`
+    <link rel="stylesheet" href="/stylesheets/stars.css">
+    <h6><strong>${this.title}<strong></h6>
+    <div class="d-grid gap-2 d-md-flex justify-content-center">
+      <p class="starability-result" data-rating="${this.rating}">Rated: ${this.rating}</p>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-center">
+      <p>${this.location}</p>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-center">
+      <a class="btn btn-primary btn-sm" href="/spots/${this._id}">VIEW</a>
+    </div>
+  `
 });
 
 SpotSchema.post('findOneAndDelete', async function (doc) {
