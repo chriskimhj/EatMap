@@ -1,0 +1,14 @@
+/* body{
+	background-image: url("https://images.unsplash.com/photo-1619200913935-7ecf731b994f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80");
+	background-size: cover;
+} */
+.header{
+	padding-top: 1%;
+	padding-bottom: 0.3%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 15px;
+	color:rgb(97, 97, 97);
+	opacity:1;
+  background-color: rgb(220, 255, 214);
+}

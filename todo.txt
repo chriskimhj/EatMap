@@ -1,0 +1,19 @@
+Cloudinary folder is done
+
+Controllers is not Done
+
+Models is done
+
+public is not Done
+
+routes is not done
+
+seeds is done
+
+views is not done
+
+app not done
+
+middleware not done
+
+schemas is not done

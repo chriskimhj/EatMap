@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatCode</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+
+<body>
+	<% layout('layouts/boilerplate')%>
+	<div id="cluster-map"></div>
+	<br>
+	<div class="header">
+		<div class="container">
+			<h1>All Spots</h1>
+			<p>Click on a location on the map above or scroll down to see previews of each spot!</p>
+		</div>
+	</div>
+	<div class="container">
+		<br>
+		<div class="row">
+			<% for (let spot of spots){%>
+			<div class="col-lg-6">
+				<div class="card mb-3">
+					<div class="row-md-4">
+						<%if(spot.images.length) {%>
+						<img class="img-fluid" alt="" src="<%=spot.images[0].url%>">
+						<% }else {%>
+						<img class="img-fluid" alt=""
+								src="https://res.cloudinary.com/dnaameeyf/image/upload/v1618853362/EatCode/photo-1504113888839-1c8eb50233d3_c24mzw.jpg">
+						<% } %>
+					</div>
+					<div class="row-md-8">
+						<div class="card-body">
+								<h4 class="card-title"><%= spot.title %> </h4>
+								<p class="card-text">
+										<small class="text-muted"><em><%= spot.location%></em></small>
+								</p>
+								<p class="card-text"><%= spot.description %></p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <a class="btn btn-primary" href="/spots/<%=spot._id%>">View <%=spot.title%></a>
+
+                </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% }%>
+		</div>
+	</div>
+	<script>
+		const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+		const spots = { features: <%- JSON.stringify(spots) %>}
+	</script>
+
+	<script src="/javascripts/clusterMap.js"></script>
+</body>
+</html>

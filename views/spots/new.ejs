@@ -1,0 +1,80 @@
+<% layout('/layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<div class="row">
+	<h1 class="text-center">New Spot</h1>
+	<div class="col-md-6 offset-md-3"><br>
+		<form action='/spots' method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+		  <div>
+		    <label class="form-label" for="title">Spot Name</label>
+		    <input class="form-control" type="text" id="title" name="spot[title]" required></input><br>
+		  </div>
+		  <div>
+		    <label class="form-label" for="location">Address</label>
+		    <input class="form-control" type="text" id="location" name="spot[location]" required></input><br>
+		  </div>
+			<div>
+				<label class="form-label" for="city">City</label>
+				<input class="form-control" type="text" id="city" name="spot[city]" required></input><br>
+			</div><br>
+			<div class="row mb-3">
+				<label class="text-center form-label" for="rating">Overall Rating</label><br><br>
+				<div class="col-md">
+					<p class="text-center text-muted"><em>Terrible</em></p>
+				</div>
+				<fieldset class="starability-basic">
+					<input type="radio" id="no-rate" class="input-no-rate" name="spot[rating]" value="1" checked aria-label="No rating." />
+					<input type="radio" id="first-rate1-a" name="spot[rating]" value="1" />
+					<label for="first-rate1-a" title="Terrible">1 star</label>
+					<input type="radio" id="first-rate2-a" name="spot[rating]" value="2" />
+					<label for="first-rate2-a" title="Not good">2 stars</label>
+					<input type="radio" id="first-rate3-a" name="spot[rating]" value="3" />
+					<label for="first-rate3-a" title="Average">3 stars</label>
+					<input type="radio" id="first-rate4-a" name="spot[rating]" value="4" />
+					<label for="first-rate4-a" title="Very good">4 stars</label>
+					<input type="radio" id="first-rate5-a" name="spot[rating]" value="5" />
+					<label for="first-rate5-a" title="Amazing">5 stars</label>
+				</fieldset>
+				<div class="col-sm">
+					<p class="text-center text-muted"><em>Amazing</em></p>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="text-center form-label" for="priceRating">Price Point</label><br><br>
+				<div class="col-md">
+					<p class="text-center text-muted"><em>Cheap</em></p>
+				</div>
+				<fieldset class="starability-basic">
+					<input type="radio" id="no-rate" class="input-no-rate" name="spot[priceRating]" value="1" checked aria-label="No rating." />
+					<input type="radio" id="first-rate1-b" name="spot[priceRating]" value="1" />
+					<label for="first-rate1-b" title="Cheap">1 star</label>
+					<input type="radio" id="first-rate2-b" name="spot[priceRating]" value="2" />
+					<label for="first-rate2-b" title="Below Average">2 stars</label>
+					<input type="radio" id="first-rate3-b" name="spot[priceRating]" value="3" />
+					<label for="first-rate3-b" title="Average">3 stars</label>
+					<input type="radio" id="first-rate4-b" name="spot[priceRating]" value="4" />
+					<label for="first-rate4-b" title="Above Average">4 stars</label>
+					<input type="radio" id="first-rate5-b" name="spot[priceRating]" value="5" />
+					<label for="first-rate5-b" title="Pricey">5 stars</label>
+				</fieldset>
+				<div class="col-sm">
+					<p class="text-center text-muted"><em>Expensive</em></p>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="description">Description</label>
+				<textarea class="form-control" type="text" id="description" name="spot[description]" required></textarea>
+			</div><br>
+			<div class="mb-3">
+				<label class="form-label" for="pictures">Pictures</label>
+				<div class="input-group mb-3">
+					<input type="file" class="form-control" id="image" name="image" multiple>
+				</div>
+			</div>
+			<br><br>
+			<div class="mb-3 text-center">
+		  	<button class="btn-lg btn-success">Add Spot</button>
+			</div>
+		</form>
+	</div>
+</div>
