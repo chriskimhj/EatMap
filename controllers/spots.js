@@ -27,7 +27,7 @@ module.exports.createSpot = async(req,res,next) => {
   spot.rating = req.body.spot.rating;
   await spot.save();
   console.log(spot);
-  req.flash('success','Successfully added a new spot!');
+  req.flash('success','New Spot Added!');
   res.redirect(`/spots/${spot._id}`);
 }
 
@@ -39,16 +39,21 @@ module.exports.showSpot = async (req,res) => {
     }
   }).populate('author');
   if(!spot){
-    req.flash('error','Cannot find Spot!');
+    req.flash('error','Cannot Find Spot!');
     res.redirect('/spots');
   }
   res.render('spots/show', { spot });
 }
 
 module.exports.renderEditForm = async(req,res) => {
-  const spot = await Spot.findById(req.params.id)
+  const spot = await Spot.findById(req.params.id).populate({
+    path:'reviews',
+    populate:{
+      path:'author'
+    }
+  }).populate('author');
   if(!spot){
-    req.flash('error','Cannot find Spot!');
+    req.flash('error','Cannot Find Spot!');
     res.redirect('/spots');
   }
   res.render('spots/edit', {spot});
@@ -67,13 +72,13 @@ module.exports.updateSpot = async(req, res) => {
     await spot.updateOne({$pull: {images: {filename: {$in: req.body.deleteImages}}}});
   }
 
-  req.flash('success','Successfully updated Spot!');
+  req.flash('success','Spot Updated!');
   res.redirect(`/spots/${spot._id}`);
 }
 
 module.exports.deleteSpot = async(req, res) => {
   const {id} = req.params;
   await Spot.findByIdAndDelete(id);
-  req.flash('success','Successfully deleted Spot!')
+  req.flash('success','Spot Deleted.')
   res.redirect('/spots');
 }

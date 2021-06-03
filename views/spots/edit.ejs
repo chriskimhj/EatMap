@@ -18,7 +18,7 @@
 				<input class="form-control" type="text" id="city" name="spot[city]" value="<%= spot.city %>" required></input><br>
 			</div><br>
 			<div class="row mb-3">
-				<label class="text-center form-label" for="rating">Overall Rating</label><br><br>
+				<label class="text-center form-label" for="rating"><strong>Overall Rating</strong></label><br><br>
 				<div class="col-md">
 					<p class="text-center text-muted"><em>Terrible</em></p>
 				</div>
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="row mb-3">
-				<label class="text-center form-label" for="priceRating">Price Point</label><br><br>
+				<label class="text-center form-label" for="priceRating"><strong>Price Point</strong></label><br><br>
 				<div class="col-md">
 					<p class="text-center text-muted"><em>Cheap</em></p>
 				</div>
@@ -66,6 +66,7 @@
 				<textarea class="form-control" type="text" id="location" name="spot[description]"  required><%= spot.description%></textarea>
 			</div><br>
 			<div class="mb-3">
+				<label class="form-label" for="pictures">Pictures</label>
 				<div class="input-group mb-3">
 					<input type="file" class="form-control" id="image" name="image" multiple>
 				</div>
@@ -78,11 +79,13 @@
 					</div>
 					<label for="image-<%=i%>">Delete</label>
 				<% }) %>
-			</div><br>
-			<div class="mb-3">
-		  	<button class="btn btn-info">Update Spot</button>
+			</div>
+			<div class="card-body d-grid gap-4 d-md-flex justify-content-center">
+				<button class="btn btn-lg btn-success">Confirm</button>
 			</div>
 		</form>
-		<a href="/spots/<%= spot._id%>">Back To Spot</a>
+		<div class="card-body d-grid gap-4 d-md-flex justify-content-center">
+			<a href="/spots/<%= spot._id%>" class="btn btn-lg btn-danger">Cancel</a>
+		</div>
 	</div>
 </div>
