@@ -1,58 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EatCode</title>
+    <title>EatMap</title>
     <link rel="stylesheet" href="/stylesheets/index.css">
     <link rel="stylesheet" href="/stylesheets/stars.css">
 </head>
 
 <body>
-	<% layout('layouts/boilerplate')%>
-	<div id="cluster-map"></div>
-	<br>
-	<div class="header">
-		<div class="container">
-			<h1>All Spots</h1>
-			<p>Pick a Spot on the Map or Click on a Preview to go to the ShowPage!</p>
-		</div>
-	</div>
-	<div class="container">
-		<br>
-		<div class="row">
-			<% for (let spot of spots){%>
-			<div class="col-lg-6">
-				<div class="card mb-3">
-					<div class="row-md-4">
-            <a href="/spots/<%=spot._id%>">
-						<%if(spot.images.length) {%>
-						<img class="img-fluid" alt="" src="<%=spot.images[0].url%>">
-						<% }else {%>
-						<img class="img-fluid" alt=""
-								src="https://res.cloudinary.com/dnaameeyf/image/upload/v1618853362/EatCode/photo-1504113888839-1c8eb50233d3_c24mzw.jpg">
-						<% } %>
-            </a>
-					</div>
-					<div class="row-md-8">
-						<div class="card-body">
-								<h4 class="card-title"><%= spot.title %> </h4>
-                <p class="card-text"><small class="text-muted"><em>Posted by </em><strong><%= spot.author.username %></strong></small></p>
-								<p class="card-text" align="justify"><%= spot.description %></p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<% }%>
-		</div>
-	</div>
-	<script>
-		const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-		const spots = { features: <%- JSON.stringify(spots) %>}
-	</script>
+  	<% layout('layouts/boilerplate') %>
+  	<div id="cluster-map"></div>
+  	<br>
+  	<div class="header">
+    		<div class="container">
+      			<h1>All Spots</h1>
+      			<p>Pick a Spot on the Map or Click on a Preview to go to the ShowPage!</p>
+    		</div>
+  	</div>
+  	<div class="container">
+    		<br>
+    		<div class="row">
+      			<% for (let spot of spots){%>
+          			<div class="col-lg-6">
+            				<div class="card mb-3">
+              					<div class="row-md-4">
+                            <a href="/spots/<%=spot._id%>">
+                    						<%if(spot.images.length) {%>
+                    						    <img class="img-fluid" alt="" src="<%=spot.images[0].url%>">
+                    						<% } else {%>
+                    						    <img class="img-fluid" src="https://res.cloudinary.com/dnaameeyf/image/upload/v1618853362/EatMap/photo-1504113888839-1c8eb50233d3_c24mzw.jpg">
+                    						<% } %>
+                            </a>
+              					</div>
+              					<div class="row-md-8">
+                						<div class="card-body">
+                								<h4 class="card-title"><%= spot.title %> </h4>
+                                <p class="card-text"><small class="text-muted"><em>Posted by </em><strong><%= spot.author.username %></strong></small></p>
+                								<p class="card-text" align="justify"><%= spot.description %></p>
+                						</div>
+              					</div>
+            				</div>
+          			</div>
+      			<% }%>
+    		</div>
+  	</div>
 
-	<script src="/javascripts/clusterMap.js"></script>
+  	<script>
+  		const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+  		const spots = { features: <%- JSON.stringify(spots) %>}
+  	</script>
+
+  	<script src="/javascripts/clusterMap.js"></script>
 </body>
+
 </html>

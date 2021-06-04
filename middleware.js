@@ -1,7 +1,7 @@
 const {spotSchema, reviewSchema} = require('./schemas.js');
-const ExpressError = require("./utils/ExpressError");
-const Spot = require('./models/spot');
-const Review = require('./models/review');
+const ExpressError               = require("./utils/ExpressError");
+const Spot                       = require('./models/spot');
+const Review                     = require('./models/review');
 
 module.exports.isLoggedIn = (req,res,next) => {
   console.log("REQ.USER...", req.user);

@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params:{
-    folder: 'EatCode',
+    folder: 'EatMap',
     allowedFormats: ['jpeg', 'png', 'jpg']
   }
 });

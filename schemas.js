@@ -1,4 +1,4 @@
-const BaseJoi = require('joi')
+const BaseJoi      = require('joi');
 const sanitizeHtml = require('sanitize-html');
 
 const extension = (joi) => ({
@@ -15,7 +15,7 @@ const extension = (joi) => ({
           allowedAttributes:{},
         });
         if(clean !== value) return helpers.error('string.escapeHTML', {value})
-        return clean;
+          return clean;
       }
     }
   }

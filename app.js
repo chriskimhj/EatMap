@@ -2,31 +2,30 @@ if(process.env.NODE_ENV !== "production"){
   require('dotenv').config();
 }
 
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const methodOverride = require('method-override');
-const ejsMate = require('ejs-mate')
-const catchAsync = require('./utils/catchAsync');
+const mongoose        = require('mongoose');
+const express         = require('express');
+const session         = require('express-session');
+const mongoSanitize   = require('express-mongo-sanitize');
+const methodOverride  = require('method-override');
+const path            = require('path');
+const ejsMate         = require('ejs-mate')
+const helmet          = require('helmet');
+const flash           = require('connect-flash');
+const passport        = require('passport');
+const LocalStrategy   = require('passport-local');
+
 const {spotSchema, reviewSchema} = require('./schemas.js');
-const session = require('express-session');
-const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require('helmet');
+const userRoutes      = require('./routes/users');
+const reviewRoutes    = require('./routes/reviews');
+const spotRoutes      = require('./routes/spots');
 
-const flash = require('connect-flash');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const User = require('./models/user')
+const User            = require('./models/user')
+const Spot            = require('./models/spot');
+const Review          = require("./models/review");
+const ExpressError    = require("./utils/ExpressError");
+const catchAsync      = require('./utils/catchAsync');
 
-const userRoutes = require('./routes/users');
-const reviewRoutes = require('./routes/reviews');
-const spotRoutes = require('./routes/spots');
-
-const Spot = require('./models/spot');
-const Review = require("./models/review");
-const ExpressError = require("./utils/ExpressError");
-
-mongoose.connect('mongodb://localhost:27017/eatcode',{
+mongoose.connect('mongodb://localhost:27017/eatmap',{
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -60,12 +59,13 @@ const sessionConfig = {
     maxAge: 1000*60*60*24*7
   }
 };
+
 app.use(session(sessionConfig));
 app.use(flash());
 app.use(helmet({contentSecurityPolicy: false }));
-
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

@@ -1,5 +1,5 @@
-const Spot = require('../models/spot')
-const Review = require("../models/review");
+const Spot    = require('../models/spot')
+const Review  = require("../models/review");
 
 module.exports.createReview = async(req,res)=>{
   const spot = await Spot.findById(req.params.id);
