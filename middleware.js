@@ -1,5 +1,5 @@
 const {spotSchema, reviewSchema} = require('./schemas.js');
-const ExpressError               = require("./utils/ExpressError");
+const ExpressError               = require("./utils/expressError");
 const Spot                       = require('./models/spot');
 const Review                     = require('./models/review');
 
