@@ -24,8 +24,12 @@ const Spot            = require('./models/spot');
 const Review          = require("./models/review");
 const ExpressError    = require("./utils/ExpressError");
 const catchAsync      = require('./utils/catchAsync');
+const MongoStore      = require('connect-mongo');
+const dbUrl = process.env.DB_URL;
+const localUrl = 'mongodb://localhost:27017/eatmap'
 
-mongoose.connect('mongodb://localhost:27017/eatmap',{
+mongoose.connect(localUrl,{
+// mongoose.connect(dbUrl,{
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -48,8 +52,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
 const sessionConfig = {
+  store: MongoStore.create({
+    mongoUrl: localUrl,
+    secret: process.env.SESSIONCONFIG_SECRET,
+    touchAfter: 24*60*60
+  }),
   name:'session',
-  secret: 'thisshouldbeabettersecret!',
+  secret: process.env.SESSIONCONFIG_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {

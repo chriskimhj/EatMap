@@ -25,12 +25,12 @@ const Joi = BaseJoi.extend(extension);
 
 module.exports.spotSchema = Joi.object({
   spot: Joi.object({
-    title: Joi.string().required().escapeHTML(),
+    title: Joi.string().required(),
     priceRating: Joi.number().required().min(1).max(5),
     rating:Joi.number().required().min(1).max(5),
     location: Joi.string().required().escapeHTML(),
     city:Joi.string().required().escapeHTML(),
-    description: Joi.string().required().escapeHTML()
+    description: Joi.string().required()
   }).required(),
   deleteImages: Joi.array()
 });
@@ -38,6 +38,6 @@ module.exports.spotSchema = Joi.object({
 module.exports.reviewSchema = Joi.object({
   review: Joi.object({
     rating: Joi.number().required().min(1).max(5),
-    body: Joi.string().required().escapeHTML()
+    body: Joi.string().required()
   }).required()
 });
