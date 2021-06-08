@@ -28,8 +28,7 @@ const MongoStore      = require('connect-mongo');
 const dbUrl = process.env.DB_URL;
 const localUrl = 'mongodb://localhost:27017/eatmap'
 
-mongoose.connect(localUrl,{
-// mongoose.connect(dbUrl,{
+mongoose.connect(dbUrl,{
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -53,7 +52,7 @@ app.use(mongoSanitize());
 
 const sessionConfig = {
   store: MongoStore.create({
-    mongoUrl: localUrl,
+    mongoUrl: dbUrl,
     secret: process.env.SESSIONCONFIG_SECRET,
     touchAfter: 24*60*60
   }),
