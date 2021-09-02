@@ -25,8 +25,8 @@ const Review          = require("./models/review");
 const ExpressError    = require("./utils/expressError");
 const catchAsync      = require('./utils/catchAsync');
 const MongoStore      = require('connect-mongo');
-const dbUrl = process.env.DB_URL;
-const localUrl = 'mongodb://localhost:27017/eatmap'
+// const dbUrl = process.env.DB_URL;
+const dbUrl = 'mongodb://localhost:27017/eatmap'
 
 mongoose.connect(dbUrl,{
   useNewUrlParser: true,
